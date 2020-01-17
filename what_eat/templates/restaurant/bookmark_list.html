@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} 즐겨찾기 {% endblock %}
+
+{% block header %}  {% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for shop in result_list %}
+        <div class="card mb-5 col-sm-4" style="max-width: 540px;">
+            <div class="row gutters">
+                <div class="col-md-4 card-image">
+                    <img src="https://www.menupan.com{{ shop.image }}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shop.title }}</h5>
+
+
+                    </div>
+
+
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><b>카테고리 : {{ shop.category }}</b> </p>
+                    <p class="card-text"><b>메뉴 : {{ shop.menu }}</b></p>
+                    <p class="card-text"><b>주소 : {{ shop.address }}</b></p>
+                    <p class="card-text"><b>전화번호 : {{ shop.tel }}</b></p>
+                </div>
+                <div class="ml-auto mr-auto">
+                    <a href="https://www.menupan.com{{ shop.link }}" target="_blank"
+                       class="btn btn-primary">더보기</a>
+                    <a href="{% url 'restaurant:delete_bookmark' pk=shop.pk %}" class="btn btn-primary">즐겨찾기 삭제</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

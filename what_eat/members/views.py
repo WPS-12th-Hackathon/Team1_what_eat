@@ -11,7 +11,7 @@ User = get_user_model()
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect('restaurant:view_restaurant')
+        return redirect('restaurant:view_restaurant', page=1)
     return render(request, 'index.html')
 
 

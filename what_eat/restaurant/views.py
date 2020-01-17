@@ -8,16 +8,16 @@ from django.shortcuts import render, redirect
 from restaurant.models import Restaurant
 
 
-def view_restaurant(request):
+def view_restaurant(request, page=None):
     # 키워드 입력받음
-    if request.method == "POST":
+    if request.method == "POST" or page == 2:
         keyword = request.POST['search_word']
 
         # 키워드를 cp949 형태로 인코딩
         cp949_keyword = keyword.encode('cp949')
         encoding_keyword = str(cp949_keyword)[2:-1].replace('\\x', '%')
 
-        url = f'https://www.menupan.com/search/restaurant/restaurant_result.asp?sc=basicdata&kw={encoding_keyword}&page=1'
+        url = f'https://www.menupan.com/search/restaurant/restaurant_result.asp?sc=basicdata&kw={encoding_keyword}&page={page}'
         # image_url = f'https://www.menupan.com{image_src}'
         # link_url = f'https://www.menupan.com{link_href}'
         response = requests.get(url)
@@ -54,8 +54,10 @@ def view_restaurant(request):
             result_list.append(shop_dict)
 
         context = {
-            'result_list': result_list
+            'result_list': result_list,
+            'search_word': request.POST['search_word'],
         }
+
         return render(request, 'index.html', context)
     else:
         return render(request, 'index.html')
@@ -68,8 +70,30 @@ def bookmark(request):
     menu = request.POST['menu']
     address = request.POST['address']
     tel = request.POST['tel']
+    image = request.POST['image']
+    link = request.POST['link']
 
-    restaurant = Restaurant.objects.get_or_create(title=title, category=category, menu=menu, address=address, tel=tel)[0]
+    restaurant = \
+        Restaurant.objects.get_or_create(title=title, category=category, menu=menu, address=address, tel=tel,
+                                         image=image, link=link)[0]
     restaurant.user.add(request.user)
 
-    return redirect('index')
+    return HttpResponse('<script>window.onload = function(){alert("즐겨찾기에 추가되었습니다."); history.back();}</script>')
+
+
+def bookmark_list(request):
+    if request.user.is_authenticated:
+
+        result_list = Restaurant.objects.filter(user=request.user)
+        context = {
+            'result_list': result_list
+        }
+        return render(request, 'restaurant/bookmark_list.html', context)
+    else:
+        return redirect('login')
+
+def delete_bookmark(request, pk):
+    restaurant = Restaurant.objects.get(pk=pk)
+    restaurant.delete()
+
+    return redirect('restaurant:bookmark_list')

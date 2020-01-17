@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>오늘 뭐 먹지? - {% block title %} {% endblock %} </title>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block header %} {% endblock %}
 
 </head>
@@ -39,7 +40,7 @@
         <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">기능1</a>
+        <a class="nav-link" href="{% url 'restaurant:bookmark_list' %}">즐겨찾기</a>
       </li>
 
         {% if user.is_authenticated %}
@@ -62,7 +63,7 @@
   </div>
 </nav>
 
-<form action="{% url 'restaurant:view_restaurant' %}" class="searchform cf" method="POST">
+<form action="{% url 'restaurant:view_restaurant' page=1 %}" class="searchform cf" method="POST">
     {% csrf_token %}
   <input type="text" name="search_word" placeholder="맛집을 검색할 위치를 입력해주세요">
   <button type="submit">Search</button>
@@ -79,7 +80,6 @@
 
 
 {% endblock %}
-
 
 </body>
 </html>

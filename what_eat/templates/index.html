@@ -44,7 +44,8 @@
                         <input name="menu" type="hidden" value="{{ shop.menu }}">
                         <input name="address" type="hidden" value="{{ shop.address }}">
                         <input name="tel" type="hidden" value="{{ shop.tel }}">
-                        <input name="image" type="hidden" value="https://www.menupan.com{{ shop.src }}">
+                        <input name="image" type="hidden" value="{{ shop.src }}">
+                        <input name="link" type="hidden" value="{{ shop.link }}">
                         <button type="submit" class="btn btn-outline-primary">즐겨찾기</button>
                     </form>
                 </div>
@@ -53,5 +54,25 @@
         {% endfor %}
     </div>
 </div>
-
+{% if search_word %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <form method="POST" action="{% url 'restaurant:view_restaurant' page=1 %}">
+            {% csrf_token %}
+            <input type="hidden" name="search_word" value="{{ search_word }}">
+            <button type="submit">1</button>
+        </form>
+        <form method="POST" action="{% url 'restaurant:view_restaurant' page=2 %}">
+            {% csrf_token %}
+            <input type="hidden" name="search_word" value="{{ search_word }}">
+            <button type="submit">2</button>
+        </form>
+        <form method="POST" action="{% url 'restaurant:view_restaurant' page=3 %}">
+            {% csrf_token %}
+            <input type="hidden" name="search_word" value="{{ search_word }}">
+            <button type="submit">3</button>
+        </form>
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}

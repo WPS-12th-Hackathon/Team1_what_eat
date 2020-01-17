@@ -10,3 +10,5 @@ class Restaurant(models.Model):
     menu = models.CharField(max_length=30)
     address = models.CharField(max_length=300)
     tel = models.CharField(max_length=30)
+    image = models.CharField(max_length=500)
+    link = models.CharField(max_length=500)
