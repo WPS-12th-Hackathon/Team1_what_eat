@@ -10,6 +10,8 @@ User = get_user_model()
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('restaurant:view_restaurant')
     return render(request, 'index.html')
 
 
@@ -62,3 +64,6 @@ def log_out(request):
     logout(request)
     return redirect('index')
 
+
+def shop_list(request):
+    pass

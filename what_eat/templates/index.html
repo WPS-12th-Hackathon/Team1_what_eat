@@ -4,47 +4,54 @@
 {% block title %} 오늘 뭐먹지? {% endblock %}
 
 
-{% block header %} <link rel="stylesheet href={% static 'css/index.css' %}"> {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
 
 {% block content %}
-
-
 <div class="container">
     <div class="row">
-    <div class="card pt-5 col-sm-12" style="width: 18rem;">
-  <img src="http://ldb.phinf.naver.net/20180530_4/1527660649770zSJff_JPEG/DyfckINMwYTeJE6ZGvr80gV_.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">음식점 이름 </h5>
-    <p class="card-text">주소 : </p>
-      <p class="card-text">전화번호 : </p>
-    <a href="https://store.naver.com/restaurants/detail?entry=pll&id=1708120554" target="_blank" class="btn btn-primary">더보기</a>
-      <a href="#" class="btn btn-outline-primary">북마크</a>
-  </div>
-</div>
-
-        <div class="card pt-5 col-sm-12" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="https://store.naver.com/restaurants/detail?entry=pll&id=1708120554" class="btn btn-primary" target="_blank">Go somewhere</a>
-  </div>
-</div>
-
-        <div class="card pt-5 col-12 col-sm-12" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+        {% for shop in result_list %}
+        <div class="card mb-5 col-sm-4" style="max-width: 540px;">
+            <div class="row gutters">
+                <div class="col-md-4 card-image">
+                    <img src="https://www.menupan.com{{ shop.src }}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shop.title }}</h5>
 
 
+                    </div>
 
+
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><b>카테고리 : </b> {{ shop.category }}</p>
+                    <p class="card-text"><b>메뉴 : </b>{{ shop.menu }} </p>
+                    <p class="card-text"><b>주소 : </b>{{ shop.address }} </p>
+                    <p class="card-text"><b>전화번호 : </b>{{ shop.tel }} </p>
+                </div>
+                <div class="ml-auto mr-auto">
+                    <a href="https://www.menupan.com{{ shop.link }}" target="_blank"
+                       class="btn btn-primary">더보기</a>
+
+                    <form class="inline-form" action="{% url 'restaurant:bookmark' %}" method="POST">
+                        {% csrf_token %}
+                        <input name="title" type="hidden" value="{{ shop.title }}">
+                        <input name="category" type="hidden" value="{{ shop.category }}">
+                        <input name="menu" type="hidden" value="{{ shop.menu }}">
+                        <input name="address" type="hidden" value="{{ shop.address }}">
+                        <input name="tel" type="hidden" value="{{ shop.tel }}">
+                        <input name="image" type="hidden" value="https://www.menupan.com{{ shop.src }}">
+                        <button type="submit" class="btn btn-outline-primary">즐겨찾기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-
 </div>
 
 {% endblock %}
