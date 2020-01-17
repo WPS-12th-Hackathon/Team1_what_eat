@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, login, authenticate
+from django.contrib.auth import get_user_model, login, authenticate, logout
 from django.http import request, HttpResponse
 from django.shortcuts import render, redirect
 from .forms import LoginForm
@@ -56,4 +56,9 @@ def log_in(request):
     }
 
     return render(request, 'members/login.html', context)
+
+
+def log_out(request):
+    logout(request)
+    return redirect('index')
 

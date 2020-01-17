@@ -27,9 +27,19 @@
       <li class="nav-item">
         <a class="nav-link" href="#">기능1</a>
       </li>
+
+        {% if user.is_authenticated %}
+
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+        </li>
+        {% else %}
         <li class="nav-item">
         <a class="nav-link" href="{% url 'login' %}">로그인</a>
-      </li>
+        </li>
+        {% endif %}
+
+
       <li class="nav-item">
         <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
       </li>
