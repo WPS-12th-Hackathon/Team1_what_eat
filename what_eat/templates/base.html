@@ -10,12 +10,13 @@
     <title>오늘 뭐 먹지? - {% block title %} {% endblock %} </title>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Hi+Melody:400" rel="stylesheet">
     {% block header %} {% endblock %}
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg bg-primary">
   <a class="navbar-brand" href="{% url 'index' %}">오늘 뭐 먹지?</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -52,12 +53,13 @@
         <li class="nav-item">
         <a class="nav-link" href="{% url 'login' %}">로그인</a>
         </li>
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
+      </li>
+
         {% endif %}
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
-      </li>
 
     </ul>
   </div>

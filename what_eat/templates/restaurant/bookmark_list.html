@@ -3,19 +3,30 @@
 
 {% block title %} 즐겨찾기 {% endblock %}
 
-{% block header %}  {% endblock %}
+{% block header %}
+<style>
+    .bookmark-none{
+        text-align: center;
+        margin-top: 200px;
+        font-size: 1.5em;
+    }
 
+</style>
+{% endblock %}
 
 
 {% block content %}
 
+
+{% if result_list %}
+
 <div class="container">
     <div class="row">
         {% for shop in result_list %}
-        <div class="card mb-5 col-sm-4" style="max-width: 540px;">
+        <div class="card mb-5 col-sm-4 pt-2 pb-2" style="max-width: 540px;">
             <div class="row gutters">
                 <div class="col-md-4 card-image">
-                    <img src="https://www.menupan.com{{ shop.image }}" class="card-img" alt="...">
+                    <img src="https://www.menupan.com{{ shop.image }}" class="card-img" alt="..." style="border-radius: 10px;">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -27,7 +38,7 @@
 
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><b>카테고리 : {{ shop.category }}</b> </p>
+                    <p class="card-text"><b>카테고리 : {{ shop.category }}</b></p>
                     <p class="card-text"><b>메뉴 : {{ shop.menu }}</b></p>
                     <p class="card-text"><b>주소 : {{ shop.address }}</b></p>
                     <p class="card-text"><b>전화번호 : {{ shop.tel }}</b></p>
@@ -39,7 +50,12 @@
                 </div>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
+
+{% else %}
+<p class="bookmark-none">즐겨찾기 목록이 없습니다. 추가해주세요.</p>
+
+{% endif %}
 {% endblock %}

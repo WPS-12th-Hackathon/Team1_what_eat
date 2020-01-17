@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+
+body{
+    font-family: 'Do Hyeon', sans-serif;
+}
 /* Search Bar */
 .searchform {
   background:#f4f4f4;
@@ -97,4 +102,21 @@
 
 .pagination{
     justify-content: center;
+}
+
+p{
+    margin-bottom: 0.2rem !important
+}
+
+.card-img{
+    border-radius: 50%;
+}
+
+.card-title{
+    color: blue;
+
+}
+
+.navbar-expand-lg,.navbar-brand,.nav-link{
+    color:white;
 }
