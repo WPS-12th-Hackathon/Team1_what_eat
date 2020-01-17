@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} 오늘 뭐먹지? {% endblock %}
+
+
+{% block header %} <link rel="stylesheet href={% static 'css/index.css' %}"> {% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+    <div class="card pt-5 col-sm-12" style="width: 18rem;">
+  <img src="http://ldb.phinf.naver.net/20180530_4/1527660649770zSJff_JPEG/DyfckINMwYTeJE6ZGvr80gV_.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">음식점 이름 </h5>
+    <p class="card-text">주소 : </p>
+      <p class="card-text">전화번호 : </p>
+    <a href="https://store.naver.com/restaurants/detail?entry=pll&id=1708120554" target="_blank" class="btn btn-primary">더보기</a>
+      <a href="#" class="btn btn-outline-primary">북마크</a>
+  </div>
+</div>
+
+        <div class="card pt-5 col-sm-12" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="https://store.naver.com/restaurants/detail?entry=pll&id=1708120554" class="btn btn-primary" target="_blank">Go somewhere</a>
+  </div>
+</div>
+
+        <div class="card pt-5 col-12 col-sm-12" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}

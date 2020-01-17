@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block header %} <link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="mr-auto ml-auto mt-3 col-lg-4 col-md-6 col-sm-8 col-10">
+
+            <div class="card text-center p-4">
+                <h1>오늘 뭐 먹지?</h1>
+                <form action="" method="POST">
+<!--                    <div class="form-group">-->
+<!--                        <input type="text" class="form-control" placeholder="휴대폰 번호 또는 이메일 주소">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <input type="text" class="form-control" placeholder="비밀번호">-->
+<!--                    </div>-->
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <button class="btn btn-primary btn-block">로그인</button>
+                </form>
+                <hr>
+                <button class="btn btn-block btn-outline-primary mb-3">네이버 아이디로 로그인</button>
+                <a href="">비밀번호를 잊으셨나요?</a>
+            </div>
+
+            <div class="card text-center p-4 mt-3 mb-3">
+                <span>계정이 없으신가요?</span>
+                <a href="{% url 'signup' %}">가입하기</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
