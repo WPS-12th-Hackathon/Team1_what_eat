@@ -120,3 +120,17 @@ p{
 .navbar-expand-lg,.navbar-brand,.nav-link{
     color:white;
 }
+
+.footer{
+    text-align: center;
+    background-color: #007bff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color:white;
+}
+
+.pagination{
+    margin-bottom:40px;
+}

@@ -56,21 +56,27 @@
 </div>
 {% if search_word %}
 <nav aria-label="Page navigation">
-    <ul class="pagination">
+    <ul class="pagination mb-5">
         <form method="POST" action="{% url 'restaurant:view_restaurant' page=1 %}">
             {% csrf_token %}
             <input type="hidden" name="search_word" value="{{ search_word }}">
-            <button type="submit">1</button>
+            <li class="page-item">
+                <button class="page-link" type="submit">1</button>
+            </li>
         </form>
         <form method="POST" action="{% url 'restaurant:view_restaurant' page=2 %}">
             {% csrf_token %}
             <input type="hidden" name="search_word" value="{{ search_word }}">
-            <button type="submit">2</button>
+            <li class="page-item">
+                <button class="page-link" type="submit">2</button>
+            </li>
         </form>
         <form method="POST" action="{% url 'restaurant:view_restaurant' page=3 %}">
             {% csrf_token %}
             <input type="hidden" name="search_word" value="{{ search_word }}">
-            <button type="submit">3</button>
+            <li class="page-item">
+                <button class="page-link" type="submit">3</button>
+            </li>
         </form>
     </ul>
 </nav>
