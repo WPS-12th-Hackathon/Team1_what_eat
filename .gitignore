@@ -371,3 +371,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/linux,macos,python,django,windows,database,pycharm+all,jupyternotebooks,visualstudiocode
+
+# custom
+hiddenkey.py
